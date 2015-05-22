@@ -24,7 +24,7 @@ def parse_json_result(out):
     representing the predicates described in the first solver result."""
 
     result = json.load(out)
-    print result['Call']
+    
     assert len(result['Call']) > 0
     assert len(result['Call'][0]['Witnesses']) > 0
     
