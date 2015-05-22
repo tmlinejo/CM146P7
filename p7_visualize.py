@@ -23,7 +23,7 @@ def parse_json_result(out):
     """Parse the provided JSON text and extract a dict
     representing the predicates described in the first solver result."""
 
-    result = json.loads(out)
+    result = json.load(out)
     print result['Call']
     assert len(result['Call']) > 0
     assert len(result['Call'][0]['Witnesses']) > 0
@@ -88,16 +88,14 @@ def side_by_side(*blocks):
         lines.append(' '.join(tup))
     return '\n'.join(lines)
 
-"""
-prog, filename = sys.argv
+if(len(sys.argv)>1):
+    prog, filename = sys.argv
 
-with open(filename) as f:
-    map = parse_json_result(f)
-    
-block = render_ascii_dungeon(map)
+    with open(filename) as f:
+        design = parse_json_result(f)
+        
 
-print block
-
+    print side_by_side(render_ascii_dungeon(design), *[render_ascii_touch(design,i) for i in range(1,4)])
 
 
 
@@ -108,4 +106,4 @@ print block
 
 
 
-"""
+
